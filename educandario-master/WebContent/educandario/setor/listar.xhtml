@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/educandario/layout.xhtml">
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+				<li role="presentation"><a class="text-muted"
+					href="registrar.xhtml">Cadastro Setor</a></li>
+				<li role="presentation" class="active"><a class="text-muted"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-muted"
+					href="registrar.xhtml">Busca</a></li>
+			</ul>
+
+			<h:form>
+				<h:dataTable styleClass="table table-striped" var="setor"
+					value="#{setorBean.setores}">
+					<h:column>
+						<f:facet name="header">Setor</f:facet>
+                        #{setor.nome}
+                    </h:column>
+
+					<h:column>
+						<f:facet name="header">Responsavel</f:facet>
+                        #{setor.responsavel.nome}
+                    </h:column>
+					<h:column>
+						<f:facet name="header">Descrição</f:facet>
+                        #{setor.descricao}
+                    </h:column>
+
+					<h:column>
+						<f:facet name="header">Acões</f:facet>
+
+						<div class="btn-group" role="group" aria-label="...">
+
+							<h:commandButton value="Remover" class="btn btn-default"
+								action="#{setorBean.removeSetor}">
+								<f:setPropertyActionListener target="#{setorBean.setor}"
+									value="#{setor}" />
+							</h:commandButton>
+
+							<h:commandButton value="Editar" class="btn btn-default"
+								action="#{setorBean.editar}">
+								<f:setPropertyActionListener target="#{setorBean.setor}"
+									value="#{setor}" />
+							</h:commandButton>
+
+						</div>
+
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	
+	<ui:composition template="/educandario/layout.xhtml">
+
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+				<li role="presentation" class="active"><a class="text-primary"
+					href="registrar.xhtml">Cadastro Funcionário</a></li>
+				<li role="presentation"><a class="text-primary"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-primary"
+					href="registrar.xhtml">Busca</a></li>
+			</ul>
+
+			<br />
+			<h:messages />
+			<br />
+
+			<h:form styleClass="form-horizontal" id="pForm">
+				<div class="form-group">
+					<h:outputLabel for="nome" value="Nome" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="nome" value="#{funcionarioBean.funcionario.nome}"
+							styleClass="form-control"  disabled="true"/>
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="nome" />
+					</div>
+				</div>
+
+
+				
+
+				<div class="form-group">
+					<h:outputLabel for="setor" value="Setor" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:selectOneMenu id="lista" class="form-control"
+							value="#{funcionarioBean.setor}" converter="setorConverter">
+							<f:selectItems value="#{setorBean.setores}"	var="setor" itemLabel="#{setor.nome}"
+								itemValue="#{setor}" />
+						</h:selectOneMenu>						
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="doc" />
+
+					</div>
+				</div>
+
+				<div class="btn-group" role="group">
+					<h:commandButton value="Salvar" action="#{funcionarioBean.addSetor}"
+						styleClass="btn btn-primary" />
+					<h:commandButton value="Limpar" action="#{funcionarioBean.clear}"
+						styleClass="btn btn-info" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

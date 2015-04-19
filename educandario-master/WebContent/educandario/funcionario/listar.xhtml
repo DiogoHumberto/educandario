@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/educandario/layout.xhtml">
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+				<li role="presentation"><a class="text-primary"
+					href="registrar.xhtml">Cadastro Funcionário</a></li>
+				<li role="presentation" class="active"><a class="text-primary"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-primary"
+					href="registrar.xhtml">Busca</a></li>
+			</ul>
+
+			<h:form>
+				<h:dataTable styleClass="table table-striped" var="funcionario"
+					value="#{funcionarioBean.funcionarios}">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+                        #{funcionario.nome}
+                    </h:column>
+                    
+					<h:column>
+						<f:facet name="header">Nascimento</f:facet>
+						<h:outputText value="#{funcionario.nascimento}">
+							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+								timeZone="America/Sao_Paulo" />
+						</h:outputText>
+
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">setores</f:facet>
+						 #{funcionario.lista}
+
+					</h:column>
+
+
+					<h:column>
+						<f:facet name="header">Acões</f:facet>
+
+						<div class="btn-group" role="group" aria-label="...">
+
+							<h:commandButton value="Remover" class="btn btn-default"
+								action="#{funcionarioBean.removeFamiliar}">
+								<f:setPropertyActionListener
+									target="#{funcionarioBean.funcionario}" value="#{funcionario}" />
+							</h:commandButton>
+
+							<h:commandButton value="Editar" class="btn btn-default"
+								action="#{funcionarioBean.editar}">
+								<f:setPropertyActionListener
+									target="#{funcionarioBean.funcionario}" value="#{funcionario}" />
+							</h:commandButton>
+							
+							
+
+						</div>
+
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

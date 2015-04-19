@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<h1>Cadastro de Atendimento</h1>
+	<ui:composition template="/educandario/layout.xhtml">
+
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+				<li role="presentation" class="active"><a class="text-danger"
+					href="registrar.xhtml">Cadastro Atendimento</a></li>
+				<li role="presentation"><a class="text-danger"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-danger"
+					href="registrar.xhtml">Busca</a></li>
+			</ul>
+
+			<br />
+			<h:messages />
+			<br />
+
+			<h:form styleClass="form-horizontal" id="pForm">
+				<div class="form-group">
+
+					<h:outputLabel for="funcionario" value="Funcionário Responsável"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<h:selectOneMenu id="listaFuncionario" class="form-control"
+							value="#{atendimentoBean.atendimento.funcionario}">
+							<f:selectItems value="#{funcionarioBean.funcionarios}"
+								var="funcionario" itemLabel="#{funcionario.nome}"
+								itemValue="#{funcionario}" />
+							<f:converter converterId="funcioarioConverter" />
+						</h:selectOneMenu>
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="responsavel" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="aluno" value="Aluno" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:selectOneMenu id="listaAluno" class="form-control"
+							value="#{atendimentoBean.atendimento.aluno}"
+							converter="alunoConverter">
+							<f:selectItems value="#{alunoBean.alunos}" var="aluno"
+								itemLabel="#{aluno.nome}" itemValue="#{aluno}" />
+
+						</h:selectOneMenu>
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="aluno" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<h:outputLabel for="horario" value="Horário" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<p:calendar id="datetime"
+							value="#{atendimentoBean.atendimento.horario}"
+							pattern="dd/MM/yyyy HH:mm:ss" locale="pt_BR"
+							timeZone="America/Sao_Paulo" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="horario" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="descricao" value="Descrição"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="descricao" styleClass="form-control"
+							value="#{atendimentoBean.atendimento.descricao}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="descricao" />
+
+					</div>
+				</div>
+
+				<div class="btn-group" role="group">
+					<h:commandButton value="Salvar"
+						action="#{atendimentoBean.addAtendimento}"
+						styleClass="btn btn-primary" />
+					<h:commandButton value="Limpar" action="#{atendimentoBean.clear}"
+						styleClass="btn btn-info" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

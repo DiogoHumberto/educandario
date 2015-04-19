@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/educandario/layout.xhtml">
+		<ui:define name="content">
+			<ul class="nav nav-tabs ">
+				<li role="presentation"><a class="text-success"
+					href="registrar.xhtml">Cadastro Aluno</a></li>
+				<li role="presentation" class="active"><a class="text-success"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-success" href="#">Busca</a></li>
+			</ul>
+			<h:form>
+				<h:dataTable styleClass="table table-striped" var="aluno"
+					value="#{alunoBean.alunos}">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+                        #{aluno.nome}
+                    </h:column>
+
+					<h:column>
+						<f:facet name="header">Nascimento</f:facet>
+						<h:outputText value="#{aluno.dataNascimento}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Endereço</f:facet>
+                        #{aluno.endereco}
+                        
+                    </h:column>
+
+
+
+					<h:column>
+						<f:facet name="header">Bairro</f:facet>
+                        #{aluno.bairro}
+                    </h:column>
+                    
+                    <h:column>
+						<f:facet name="header">Cidade</f:facet>
+                        #{aluno.cidade}
+                    </h:column>
+                    
+					<h:column>
+						<f:facet name="header">Acões</f:facet>
+
+						<div class="btn-group" role="group" aria-label="...">
+
+							<h:commandButton value="Remover" class="btn btn-default"
+								action="#{alunoBean.removeAluno}">
+								<f:setPropertyActionListener target="#{alunoBean.aluno}"
+									value="#{aluno}" />
+							</h:commandButton>
+
+							<h:commandButton value="Editar" class="btn btn-default"
+								action="#{alunoBean.editar}">
+								<f:setPropertyActionListener target="#{alunoBean.aluno}"
+									value="#{aluno}" />
+							</h:commandButton>
+
+							<h:commandButton value="+ Familiar" class="btn btn-default"
+								action="#{alunoBean.addFamiliar}">
+
+								<f:setPropertyActionListener target="#{alunoBean.aluno}"
+									value="#{aluno}" />
+							</h:commandButton>
+
+						</div>
+
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

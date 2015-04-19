@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/educandario/layout.xhtml">
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+
+				<li role="presentation" class="active"><a class="text-warning"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-warning" href="#	">Busca</a></li>
+			</ul>
+
+			<h:form>
+				<h:dataTable styleClass="table table-striped" var="familiar"
+					value="#{familiarBean.familiares}">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+                        #{familiar.nome}
+                    </h:column>
+
+					<h:column>
+						<f:facet name="header">CPF</f:facet>
+                        #{familiar.CPF}
+                       
+                    </h:column>
+					<h:column>
+						<f:facet name="header">Parentesco</f:facet>
+                        #{familiar.tipoParentesco}
+                       
+                    </h:column>
+
+					<h:column>
+						<f:facet name="header">Nascimento</f:facet>
+						<h:outputText value="#{familiar.dataNascimento}">
+							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+								timeZone="America/Sao_Paulo" />
+						</h:outputText>
+
+
+					</h:column>
+					<h:column>
+						<f:facet name="header">Telefone Res.</f:facet>
+                        #{familiar.telefoneResidencial}
+                                                                      
+                    </h:column>
+					<h:column>
+						<f:facet name="header">Celular</f:facet>
+                        #{familiar.telefoneCelular}
+                       
+                    </h:column>
+					<h:column>
+						<f:facet name="header">Telefone Trabalho</f:facet>
+                        #{familiar.telefoneTrabalho}
+                       
+                    </h:column>
+					<h:column>
+						<f:facet name="header">Acões</f:facet>
+
+						<div class="btn-group" role="group" aria-label="...">
+
+							<h:commandButton value="Remover" class="btn btn-default"
+								action="#{familiarBean.removeFamiliar}">
+								<f:setPropertyActionListener target="#{familiarBean.familiar}"
+									value="#{familiar}" />
+							</h:commandButton>
+
+							<h:commandButton value="Editar" class="btn btn-default"
+								action="#{familiarBean.editar}">
+								<f:setPropertyActionListener target="#{familiarBean.familiar}"
+									value="#{familiar}" />
+							</h:commandButton>
+
+						</div>
+
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

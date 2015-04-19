@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="default.css" />
+</h:head>
+
+<h:body>
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="col-sm-3">
+				<ui:insert name="header">
+					<ui:include src="/educandario/header.xhtml" />
+				</ui:insert>
+			</div>
+			<div class="col-sm-9">
+				<ui:insert name="content">
+				</ui:insert>
+			</div>
+		</div>
+	</div>
+
+
+</h:body>
+</html>

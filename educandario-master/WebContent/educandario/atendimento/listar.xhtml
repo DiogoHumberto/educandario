@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="/educandario/layout.xhtml">
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+				<li role="presentation"><a class="text-danger"
+					href="registrar.xhtml">Cadastro Atendimento</a></li>
+				<li role="presentation" class="active"><a class="text-danger"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-danger"
+					href="registrar.xhtml">Busca</a></li>
+			</ul>
+
+			<h:form>
+				<h:dataTable styleClass="table table-striped" var="atendimento"
+					value="#{atendimentoBean.atendimentos}">
+					<h:column>
+						<f:facet name="header">Nome Funcionário</f:facet>
+                        #{atendimento.funcionario.nome}
+                        
+                    </h:column>
+
+					<h:column>
+						<f:facet name="header">Aluno</f:facet>
+                        #{atendimento.aluno.nome}
+                    </h:column>
+
+					<h:column>
+					<f:facet name="header">Horario</f:facet>
+						<h:outputText value="#{atendimento.horario}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" locale="pt_BR"
+								timeZone="America/Sao_Paulo" />
+						</h:outputText>
+						                   
+                    </h:column>
+
+					<h:column>
+						<f:facet name="header">Descrição</f:facet>
+                        #{atendimento.descricao}
+                    </h:column>
+					<h:column>
+						<f:facet name="header">Acões</f:facet>
+
+						<div class="btn-group" role="group" aria-label="...">
+
+							<h:commandButton value="Remover" class="btn btn-default"
+								action="#{atendimentoBean.removeAtendimento}">
+								<f:setPropertyActionListener target="#{atendimentoBean.atendimento}"
+									value="#{atendimento}" />
+							</h:commandButton>
+
+							<h:commandButton value="Editar" class="btn btn-default"
+								action="#{atendimentoBean.editar}">
+								<f:setPropertyActionListener target="#{atendimentoBean.atendimento}"
+									value="#{atendimento}" />
+							</h:commandButton>
+
+						</div>
+
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<h1>Cadastro setor</h1>
+	<ui:composition template="/educandario/layout.xhtml">
+
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+				<li role="presentation" class="active"><a class="text-muted"
+					href="registrar.xhtml">Cadastro Setor</a></li>
+				<li role="presentation"><a class="text-muted"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-muted"
+					href="registrar.xhtml">Busca</a></li>
+			</ul>
+
+			<br />
+			<br />
+
+			<h:form styleClass="form-horizontal" id="pForm">
+				<div class="form-group">
+					<h:outputLabel for="nome" value="Setor" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="nome" value="#{setorBean.setor.nome}"
+							styleClass="form-control" />
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="nome" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<h:outputLabel for="desc" value="Descrição" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="desc" styleClass="form-control" value="#{setorBean.setor.descricao}" />
+						
+					</div>
+
+				</div>
+
+				<div class="btn-group" role="group">
+					<h:commandButton value="Salvar" action="#{setorBean.addSetor}"
+						styleClass="btn btn-primary" />
+					<h:commandButton value="Limpar" action="#{setorBean.clear}"
+						styleClass="btn btn-info" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<ui:composition template="/educandario/layout.xhtml">
+
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+				<li role="presentation" class="active"><a class="text-warning"
+					href="registrar.xhtml">Cadastro Reponsável</a></li>
+
+			</ul>
+
+			<br />
+
+
+			<h:form styleClass="form-horizontal" id="pForm">
+
+				<div class="form-group">
+					<h:outputLabel for="nomeAluno" value="Aluno" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="nomeAluno"
+							value="#{familiarBean.alunoBean.aluno.nome}"
+							styleClass="form-control" disabled="true" />
+					</div>
+				</div>
+				<br />
+				<br />
+				<div class="form-group">
+					<h:outputLabel for="nome" value="Nome" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="nome" value="#{familiarBean.familiar.nome}"
+							styleClass="form-control" />
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="nome" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="parentesco" value="Parentesco"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<h:selectOneMenu id="sexo"
+							value="#{familiarBean.familiar.tipoParentesco}"
+							styleClass="form-control">
+							<f:selectItem itemLabel=" " itemValue="" />
+							<f:selectItem itemLabel="Pai" itemValue="Pai" />
+							<f:selectItem itemLabel="Mãe" itemValue="Mae" />
+							<f:selectItem itemLabel="Tio" itemValue="Tio" />
+							<f:selectItem itemLabel="Vô (Vó)" itemValue="Vo" />
+							<f:selectItem itemLabel="Outro" itemValue="Outro" />
+						</h:selectOneMenu>
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="CPF" value="CPF" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<p:inputMask id="CPF" value="#{familiarBean.familiar.CPF}"
+							styleClass="form-control" mask="999.999.999-99" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="CPF" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="RG" value="RG" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="RG" styleClass="form-control"
+							value="#{familiarBean.familiar.RG}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="RG" />
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="date" value="Nascimento" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<p:inputMask type="date" id="date"
+							value="#{familiarBean.familiar.dataNascimento}"
+							styleClass="form-control" placeholder="dd/mm/yyyy"
+							mask="99/99/9999">
+							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+								timeZone="America/Sao_Paulo" />
+
+						</p:inputMask>
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="date" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+
+
+					<h:outputLabel for="escolaridade" value="Escolaridade"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<h:selectOneMenu id="escolaridade"
+							value="#{familiarBean.familiar.escolaridade}"
+							styleClass="form-control">
+							<f:selectItem itemLabel=" " itemValue="" />
+							<f:selectItem itemLabel="Analfabeto" itemValue="Analfabeto" />
+							<f:selectItem itemLabel="Alfabetizado" itemValue="Alfabetizado" />
+							<f:selectItem itemLabel="Ensino Fundamental Incompleto"
+								itemValue="EnsinoFundamentalIncompleto" />
+							<f:selectItem itemLabel="Ensino Fundamental"
+								itemValue="EnsinoFundamental" />
+							<f:selectItem itemLabel="Ensino Medio Incompleto"
+								itemValue="EnsinoMedioIncompleto" />
+							<f:selectItem itemLabel="Ensino Medio" itemValue="EnsinoMedio" />
+							<f:selectItem itemLabel="Superior Incompleto"
+								itemValue="SuperiorIncompleto" />
+							<f:selectItem itemLabel="Superior" itemValue="Superior" />
+							<f:selectItem itemLabel="Pós Graduacao" itemValue="PosGraduacao" />
+
+						</h:selectOneMenu>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="dateEscolaridade" value="Data de Conclusão"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<p:inputMask type="date" id="dataecolaridade"
+							value="#{familiarBean.familiar.conculacaoEscolaridade}"
+							styleClass="form-control" placeholder="dd/mm/yyyy"
+							mask="99/99/9999">
+							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+								timeZone="America/Sao_Paulo" />
+						</p:inputMask>
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="dateEscolaridade" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="obs" value="Observação" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="obs" styleClass="form-control"
+							value="#{familiarBean.familiar.observacao}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="obs" />
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="renda" value="Renda" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="renda" styleClass="form-control"
+							value="#{familiarBean.familiar.renda}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="renda" />
+
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<h:outputLabel for="telecel" value="Telefone Celular"
+						styleClass="col-sm-2" />
+					<div class="col-xs-3">
+						<p:inputMask id="telecel" styleClass="form-control"
+							value="#{familiarBean.familiar.telefoneCelular}" mask="(99)9999-9999"/>
+							
+					</div>
+					<h:outputLabel for="telefixo" value="Telefone Fixo"
+						styleClass="col-sm-1" />
+					<div class="col-xs-4">
+						<p:inputMask id="telefixo" styleClass="form-control" placeholder="Fixo"
+							value="#{familiarBean.familiar.telefoneResidencial}"  mask="(99)9999-9999"/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="telefone" value="Telefone do Trabalho"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<p:inputMask id="telefone" styleClass="form-control"
+							value="#{familiarBean.familiar.telefoneTrabalho}" mask="(99)9999-9999"/>
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="telefone" />
+
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<h:outputLabel for="endereco" value="Endereço"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="endereco" styleClass="form-control"
+							value="#{familiarBean.familiar.endereco}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="endereco" />
+
+					</div>
+				</div>
+
+
+				<div class="row">
+					<h:outputLabel for="bairro" value="Bairro" styleClass="col-sm-2" />
+					<div class="col-xs-3">
+						<input type="text" class="form-control" placeholder="Bairro"
+							value="#{familiarBean.familiar.bairro}" />
+					</div>
+					<h:outputLabel for="cidade" value="Cidade" styleClass="col-sm-1" />
+					<div class="col-xs-4">
+
+						<h:selectOneMenu id="cidade" styleClass="form-control"
+							value="#{familiarBean.familiar.cidade}" placeholder="cidade">
+							<f:selectItem itemLabel=" " />
+							<f:selectItem itemLabel="Florianópolis" itemValue="Florianópolis" />
+							<f:selectItem itemLabel="São Jose" itemValue="São Jose" />
+							<f:selectItem itemLabel="Palhoça" itemValue="Palhoça" />
+							<f:selectItem itemLabel="Biguaçu" itemValue="Biguaçu" />
+							<f:selectItem itemLabel="Gov. Celso Ramos"
+								itemValue="Gov. Celso Ramos" />
+							<f:selectItem itemLabel="Tijucas" itemValue="Tijucas" />
+						</h:selectOneMenu>
+
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<h:outputLabel for="responsavel" value="Responsável"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<h:selectOneMenu id="responsavel"
+							value="#{familiarBean.familiar.responsavel}"
+							styleClass="form-control">
+							<f:selectItem itemLabel=" " itemValue="" />
+							<f:selectItem itemLabel="Sim" itemValue="true" />
+							<f:selectItem itemLabel="Não" itemValue="false" />
+						
+						</h:selectOneMenu>
+
+					</div>
+				</div>
+
+				<br />
+				<br />
+
+				<div class="btn-group" role="group">
+					<h:commandButton value="Salvar"
+						action="#{familiarBean.addFamiliar}" styleClass="btn btn-primary" />
+					<h:commandButton value="Limpar" action="#{familiarBean.clear}"
+						styleClass="btn btn-info" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

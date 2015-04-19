@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:body>
+
+
+	<ui:composition template="/educandario/layout.xhtml">
+
+		<ui:define name="content">
+
+			<ul class="nav nav-tabs ">
+				<li role="presentation" class="active"><a class="text-success"
+					href="registrar.xhtml">Cadastro Aluno</a></li>
+				<li role="presentation"><a class="text-success"
+					href="listar.xhtml">Lista</a></li>
+				<li role="presentation"><a class="text-success"
+					href="registrar.xhtml">Busca</a></li>
+				<li role="presentation"><a class="text-success"
+					href="registrar.xhtml">Perfil</a></li>
+			</ul>
+
+
+			<br />
+			<br />
+
+			<h:form styleClass="form-horizontal" id="pForm">
+				<h:inputHidden value="#{alunoBean.aluno.id}" />
+
+				<div class="form-group ">
+					<h:outputLabel for="nome" value="Nome" styleClass="col-sm-2" />
+					<div class="col-sm-7 ">
+						<h:inputText id="nome" value="#{alunoBean.aluno.nome}"
+							styleClass="form-control" />
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="nome" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<h:outputLabel for="date" value="Nascimento" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<p:inputMask type="date" id="date"
+							value="#{alunoBean.aluno.dataNascimento}"
+							styleClass="form-control" mask="99/99/9999">
+							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"
+								timeZone="America/Sao_Paulo" />
+
+						</p:inputMask>
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="date" />
+					</div>
+				</div>
+
+				<div class="form-group">
+
+					<h:outputLabel for="sexo" value="Sexo" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<h:selectOneMenu id="sexo" styleClass="form-control"
+							value="#{alunoBean.aluno.sexo}">
+							<f:selectItem itemLabel=" " />
+							<f:selectItem itemLabel="Masculino" itemValue="m" />
+							<f:selectItem itemLabel="Feminino" itemValue="f" />
+							<f:selectItem itemLabel="Outro" itemValue="o" />
+
+						</h:selectOneMenu>
+
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="necessidadeEspecial"
+						value="Pessoa Com Deficiência" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<h:panelGrid columns="3" style="margin-bottom:12px"
+							cellpadding="7">
+							<h:selectManyCheckbox id="basic"
+								value="#{alunoBean.aluno.necessidadesEspeciais}">
+								<f:selectItem itemValue="Intelectual" itemLabel="Intelectual - " />
+								<f:selectItem itemValue="Motora" itemLabel="Motora - " />
+								<f:selectItem itemValue="Fisica" itemLabel="Fisica - " />
+								<f:selectItem itemValue="Visual" itemLabel="Visual  " />
+							</h:selectManyCheckbox>
+						</h:panelGrid>
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="doc" value="Documentos Necessarios"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="doc" styleClass="form-control"
+							value="#{alunoBean.aluno.documentoNecessarios}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="doc" />
+
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="tipoMoradia" value="Tipo de Moradia"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<h:selectOneMenu id="tipoMoradia" styleClass="form-control"
+							value="#{alunoBean.aluno.tipoMoradia}">
+							<f:selectItem itemLabel=" " />
+							<f:selectItem itemLabel="Próprio" itemValue="Próprio" />
+							<f:selectItem itemLabel="Cedido" itemValue="Cedido" />
+							<f:selectItem itemLabel="Alugado" itemValue="Alugado" />
+
+						</h:selectOneMenu>
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="tipoMoradia" styleClass="form-control" />
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="moradia" value="Informações de Moradia"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="moradia" styleClass="form-control"
+							value="#{alunoBean.aluno.informacaoMoradia}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="moradia" styleClass="form-control" />
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="endereco" value="Endereço"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="endereco" class="form-control"
+							a:placeholder="Ex: Rua Joaquim, 321"
+							value="#{alunoBean.aluno.endereco}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="endereco" />
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="cep" value="CEP" styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText type="text" class="form-control"
+							a:placeholder="xxxxx-xxx" value="#{alunoBean.aluno.CEP}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="cep" />
+
+					</div>
+				</div>
+
+				<div class="row">
+					<h:outputLabel for="bairro" value="Bairro" styleClass="col-sm-2" />
+					<div class="col-xs-3">
+						<h:inputText type="text" class="form-control"
+							a:placeholder="Bairro" value="#{alunoBean.aluno.bairro}" />
+					</div>
+					<h:outputLabel for="cidade" value="Cidade" styleClass="col-sm-1" />
+					<div class="col-xs-4">
+
+						<h:selectOneMenu id="cidade" styleClass="form-control"
+							value="#{alunoBean.aluno.cidade}">
+							<f:selectItem itemLabel=" " />
+							<f:selectItem itemLabel="Florianópolis" itemValue="Florianópolis" />
+							<f:selectItem itemLabel="São Jose" itemValue="São Jose" />
+							<f:selectItem itemLabel="Palhoça" itemValue="Palhoça" />
+							<f:selectItem itemLabel="Biguaçu" itemValue="Biguaçu" />
+							<f:selectItem itemLabel="Gov. Celso Ramos"
+								itemValue="Gov. Celso Ramos" />
+							<f:selectItem itemLabel="Tijucas" itemValue="Tijucas" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+				<br />
+
+				<div class="form-group">
+					<h:outputLabel for="bolsaFamilia" value="Bolsa Familia"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+
+						<h:selectOneMenu id="bolsaFamilia" styleClass="form-control"
+							value="#{alunoBean.aluno.bolsaFamilia}" onchange="submit()"
+							valueChangeListener="#{alunoBean.numeroNis}">
+							<f:selectItem itemLabel=" " />
+							<f:selectItem itemLabel="Sim" itemValue="true" />
+							<f:selectItem itemLabel="Não" itemValue="false" />
+
+						</h:selectOneMenu>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="numero" value="Número do NIS"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="numeroCad" styleClass="form-control"
+							value="#{alunoBean.aluno.numeroNIS}" disabled="true" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="numero" />
+
+					</div>
+				</div>
+				<div class="form-group">
+					<h:outputLabel for="condicao" value="Condição Familiar"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="condicao" styleClass="form-control"
+							value="#{alunoBean.aluno.condicaoFamiliar}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="condicao" />
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="avaliacao" value="Avaliação"
+						styleClass="col-sm-2" />
+					<div class="col-sm-7">
+						<h:inputText id="avalicao" styleClass="form-control"
+							value="#{alunoBean.aluno.avaliacao}" />
+
+					</div>
+
+					<div class="col-sm-3">
+						<h:message for="avaliacao" />
+
+					</div>
+				</div>
+
+
+				<div class="btn-group" role="group">
+					<br /> <br /> <br />
+					<h:commandButton value="Salvar" action="#{alunoBean.addAluno}"
+						styleClass="btn btn-primary" />
+					<h:commandButton value="Limpar" action="#{alunoBean.clear}"
+						styleClass="btn btn-info" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,27 @@
+Objetivos: Montar o ambiente de desenvolvimento e entender como o JPA interagem com uma classe Java.
+
+-------------------------------------
+
+Montando ambiente de desenvolvimento:
+-> Instalar Java 8
+-> Baixar e Instalar MySQL:
+	-> Senha 123123
+	-> Abrir o console do MySQL e criar um DB para fins de estudo
+-> Baixar e Descompactar o Eclipse
+-> Abrir Eclipse:
+	-> Adicionar todos os plugins de Database, Test e WEB
+	-> Criar um Projeto do tipo: JPA Project
+	   -> Download da implementação do JPA
+	-> Linkar driver do MySQL no projeto
+-> Editar o persitence.xml para suportar a base de dados
+
+-------------------------------------
+	
+Ciclo de vida do Objeto dentro do JPA
+Todo objeto dentro da JPA é gerenciado pelo Entity Manager, do momento de criação até a destruição 
+do objeto. Para que isto ocorra, se faz necessário a chamar o método persist(<referencia_do_objeto>) 
+para que este entre no estado Managed (Gerenciado).
+
+Abra o arquivo: doc/01/ciclo_de_vida_entity.png
+
+-------------------------------------
